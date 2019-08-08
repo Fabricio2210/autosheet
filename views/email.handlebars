@@ -1,0 +1,131 @@
+{{#each erro}}
+<div class="container msg">
+    <div class="alert center-align">{{text}}
+    </div>
+</div>
+{{else}} {{/each}}
+
+<div class="container">
+    <br>
+    <div class="row animated slideInDown">
+        <div class="bordaCinza">
+            <div class="bordaVerde white-text">
+                 <p class="center-align textoCard">Insira os Dados do Email</p>
+            </div>
+            <div class="row">
+                {{#if dashboardUsuario}}
+                <form action="/email/{{dashboardUsuario.usuario}}?_method=PUT" method="POST">
+                    <input type="hidden" name="_method" value="PUT">
+                    <div class="row">
+                        <div class="input-field col l6 s12 m12">
+                            <input id="remetente" type="email" class="validate" name="remetente" value="{{dashboardUsuario.remetente}}">
+                            <label for="remetente">Remetente</label>
+                        </div>
+                        <div class="input-field col l6 s12 m12">
+                            <input id="destinatario" type="email" class="validate" name="destinatario" value="{{dashboardUsuario.destinatario}}">
+                            <label for="destinatario">Destinatário</label>
+                        </div>
+                            <div class="input-field col l3 s12 m3">
+                                <p>
+                                    <label>
+                                        <input type="checkbox" id="ferias" class="validate" name="ferias"{{#if dashboardUsuario.ferias}}checked="checked"{{/if}} onclick="myFunction()"/>
+                                        <span>Ferias</span>
+                                    </label>
+                                </p>
+                            </div>
+                            <div id="text" style="display:none">
+                                <div class="input-field col l3 s12 m3">
+                                    <p>
+                                        <label>Começo</label>
+                                        <input type="date" name="comeco"> 
+                                    </p>
+                                </div>
+                                <div class="input-field col l3 s12 m3">
+                                    <p>
+                                        <label>Fim</label>
+                                        <input type="date" name="fim"> 
+                                    </p>
+                                </div>
+                            </div>
+                        <div class="input-field col l12 s12 m12">
+                            <p>Corpo do email:</p>
+                            <textarea name="body">
+                                {{dashboardUsuario.email}}
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col l2 s2 m2">
+                            <button class="btn myButtonBlue hide-on-med-and-down" type="submit"
+                                name="action">SALVAR</button>
+                            <button class="btn-floating waves-effect waves light-blue darken-4 hide-on-large-only" type="submit"
+                                name="action">
+                                <i class="fas fa-sign-in-alt"></i>
+                            </button>
+                        </div>
+                </form>
+                {{else}}
+                <form method="POST" action="/email/{{user._id}}">
+                    <div class="row">
+                        <div class="input-field col l6 s12 m12">
+                            <input id="remetente" type="email" class="validate" name="remetente" value="{{dashboardUsuario.remetente}}">
+                            <label for="remetente">Remetente</label>
+                        </div>
+                        <div class="input-field col l6 s12 m12">
+                            <input id="destinatario" type="email" class="validate" name="destinatario" value="{{dashboardUsuario.destinatario}}">
+                            <label for="destinatario">Destinatário</label>
+                        </div>
+                        <div class="input-field col l12 s12 m12">
+                            <p>Corpo do email:</p>
+                            <textarea name="body"> {{dashboardUsuario.email}}</textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col l2 s2 m2">
+                            <button class="btn myButtonBlue hide-on-med-and-down" type="submit"
+                                name="action">SALVAR</button>
+                            <button class="btn-floating waves-effect waves light-blue darken-4 hide-on-large-only" type="submit"
+                                name="action">
+                                <i class="fas fa-sign-in-alt"></i>
+                            </button>
+                        </div>
+                </form>
+                {{/if}}
+                {{#if dashboardUsuario._id}}
+                <div class="col l2 s2 m2">
+                    <button data-target="modalDeletEmail" class="btn modal-trigger btn red hide-on-large-only">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+
+                <div class="col l1 pull-l2 s2 m2">
+                    <button data-target="modalDeletEmail" class="btn modal-trigger btn myButtonRed hide-on-med-and-down">
+                        APAGAR
+                    </button>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--- Confirmação deletar email -->
+
+<div id="modalDeletEmail" class="modal">
+    <div class="modal-content">
+        <div class="bordaCinza">
+            <h5 class="center-align">Deseja realmente deletar esse email?</h5>
+            <form class="center-align" method="post" action="/email/{{dashboardUsuario.id}}?_method=DELETE">
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="btn myButtonRed modal-close" type="submit">
+                    SIM
+                </button>
+                <a href="#" class="btn myButtonBlue modal-close">
+                    NÃO
+                </a>
+            </form>
+        </div>
+    </div>
+</div>

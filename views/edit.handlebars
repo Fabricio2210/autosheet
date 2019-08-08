@@ -1,0 +1,72 @@
+<div class="container">
+  <br><br><br>
+  <div class="row animated slideInDown">
+    <div class="col push-l2 l8 s12 m12 bordaCinza">
+      <div class="bordaVerde white-text">
+          <p class="center-align textoCard">Preencha Seus Dados</p>
+         
+        </div>
+      <br>
+        <form action="/edit/{{dashboardUsuario.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="_method" value="PUT">
+          <div class="row">
+            <div class="input-field col l6 s12 m12">
+              <input id="first_name" type="text" class="validate" name="nome" value="{{dashboardUsuario.nome}}">
+              <label for="first_name">Nome</label>
+            </div>
+            <div class="input-field col l6 s12 m12">
+              <input id="email" type="email" class="validate" name="email" value="{{dashboardUsuario.email}}">
+              <label for="email">Email</label>
+            </div>
+            <div class="input-field col l6 s12 m6">
+              <p>
+                <label>
+                  <input type="checkbox" id="plantonista" class="validate" name="plantonista" {{#if dashboardUsuario.plantonista}}checked="checked"{{/if}}/>
+                  <span>Plantonista</span>
+                </label>
+              </p>
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col l2 s2 m2">
+              <button class="btn myButtonBlue hide-on-med-and-down" type="submit" name="action">ENVIAR</button>
+              <button class="btn-floating waves-effect waves light-blue darken-4 hide-on-large-only" type="submit" name="action">
+                <i class="fas fa-sign-in-alt"></i>
+              </button>
+            </div>
+        </form>
+        <div class="col l2 s2 m2">
+          <button data-target="modalDelet" class="btn modal-trigger btn red hide-on-large-only">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </div>
+        <div class="col l2 s2 m2">
+          <button data-target="modalDelet" class="btn modal-trigger btn myButtonRed hide-on-med-and-down">
+            APAGAR
+          </button>
+        </div>
+      </div>
+        </div>
+    </div>
+  </div>
+
+
+  <!--- Confirmação deletar perfil -->
+
+  <div id="modalDelet" class="modal">
+    <div class="modal-content">
+      <div class="bordaCinza">
+        <h5 class="center-align">Deseja realmente deletar seu perfil?</h5>
+        <form class="center-align" method="post" action="/edit/{{dashboardUsuario.id}}?_method=DELETE">
+          <input type="hidden" name="_method" value="DELETE">
+          <button class="btn myButtonRed modal-close" type="submit">
+           SIM
+          </button>
+          <a href="#" class="btn myButtonBlue modal-close">
+            NÃO
+          </a>
+        </form>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,137 @@
+<div class="row">
+  <div class="col s12 m12 l3">
+    <div class="card animated slideInDown bordaCinza">
+      <div class="card-content center-align">
+        <h4>{{dashboardUsuario.nome}}</h4>
+        <p>{{dashboardUsuario.email}}</p>
+        <br>
+        <div class="row">
+          <div class="col s8 push-s2 center-align">
+            <a href="/edit/{{dashboardUsuario.id}}" class="myButtonOrange">
+              EDITAR PERFIL
+            </a>
+          </div>
+
+        </div>
+      </div>
+      <div class="card-action  center-align">
+        {{#if data}}
+        <h5>Selecione sua planilha</h5>
+        <form action="/dashboard?_method=PUT" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="_method" value="PUT">
+          <div class="file-field input-field">
+            <div class="btn myButtonOrange">
+              <span>
+                <i class="material-icons">attach_file</i>
+              </span>
+              <input type="file" name="file" id="file">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+            <button class="btn myButtonBlue" type="submit" name="action">ENVIAR
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </form>
+        {{else}}
+        <h5>Selecione sua planilha</h5>
+        <form action="/dashboard" method="POST" enctype="multipart/form-data">
+          <div class="file-field input-field">
+            <div class="btn myButtonOrange">
+              <span>
+                <i class="material-icons">attach_file</i>
+              </span>
+              <input type="file" name="file" id="file">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+            <button class="btn btn myButtonBlue" type="submit" name="action">ENVIAR
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </form>
+        {{/if}}
+      </div>
+      <br>
+      <div class="card-action">
+          <button data-target="modalPlanilha" class="btn myButtonRed btn modal-trigger" >DELETAR
+            <i class="fas fa-times-circle"></i>
+          </button>
+        </form>
+      </div>
+
+      <div class="card-action center-align">
+        <div class="col s8 push-s2">
+          <a href="/email/{{dashboardUsuario.id}}" class="myButtonOrange white-text text-darken-5 ">
+            EMAIL<i class="material-icons right white-text text-darken-5 ">email</i>
+          </a>
+        </div>
+      </div>
+      <br><br>
+      <div class="card-action center-align">
+        <a href="uploads/modelo.xlsx">Planilha modelo</a>
+      </div>
+      {{#if data}}
+      <div class="card-action center-align">
+        <a href="atualizados/{{maiuscula dashboardUsuario.nome}}_TIMESHEET.xlsx">Planilha atualizada</a>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+  <div class="col s12 l8 animated slideInRight copy-target">
+  <input type="button" class="btn-small btn myButtonBlue" value="copiar tabela"
+   onclick="selectElementContents( document.getElementById('tableId') );">
+  
+    <table class="centered textoTabela">
+      
+        {{#if data}}
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Atividade</th>
+            <th>Área</th>
+            <th>Colaborador</th>
+            <th>Cliente</th>
+            <th>Tempo</th>
+
+          </tr>
+        </thead>
+        {{/if}}
+        <tbody id="tableId">
+          {{#each data}} {{#each data}}
+          <tr>
+            <td>{{this.DATA_CORRETA}}</td>
+            <td>{{this.ATIVIDADE}}</td>
+            <td>{{this.ÁREA}}</td>
+            <td>{{this.COLABORADOR}}</td>
+            <td>{{this.CLIENTE}}</td>
+            <td>{{this.TEMPO}}</td>
+
+          </tr>
+          {{/each}} {{/each}}
+        </tbody>
+      </table>
+  </div>
+</div>
+
+
+
+<!--- Confirmação deletarplanilha -->
+<div id="modalPlanilha" class="modal">
+    <div class="modal-content">
+      <div class="bordaCinza">
+        <h5 class="center-align">Deseja realmente deletar sua planilha?</h5>
+        <form class="center-align" method="post" action="/dashboard?_method=DELETE">
+          <input type="hidden" name="_method" value="DELETE">
+          <button class="btn myButtonRed modal-close" type="submit" name="action">
+            SIM
+          </button>
+        <a href="#" class="btn myButtonBlue modal-close">
+         NÃO
+        </a>
+      </form>
+      </div>
+    </div>
+  </div>

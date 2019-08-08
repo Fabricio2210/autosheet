@@ -1,0 +1,29 @@
+<div class="container_light animated slideInLeft">
+    <br>
+    <div class="row">
+        <div class="multiple-items green darken-1 hide-on-med-and-down">
+            {{#each usuario}}
+            <ul class="collection">
+                <li class="collection-item avatar">
+                    <p>{{nome}}</p>
+                    <p>{{email}}</p>       
+                </li>
+            </ul>
+            {{/each}}
+        </div>
+        <br>
+        <br>
+        <div class="single-item green darken-1 hide-on-large-only ">
+            {{#each usuario}}
+            <ul class="collection">
+                <li class="collection-item avatar">
+                    <p>{{nome}}</p>
+                    <p>{{email}}</p>
+                </li>
+            </ul>
+            {{/each}}
+        </div>
+        <hr>
+
+    </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="navbar-fixed">
+    <nav class=" bordaVerde">
+        <div class="container_light">
+            <div class="nav-wrapper">
+                <a href="/sobre" class="brand-logo center">Auto-Sheet</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+                    <i class="material-icons">menu</i>
+                </a>
+                <ul id="nav-mobile" class=" hide-on-med-and-down">
+                    {{#if user}}
+                    {{#if user.desenvolvedor}}
+                    <li>
+                        <a href="/slider ">Usuários</a>
+                    </li>
+                    {{/if}}
+                    <li>
+                        <a href="/logout">Logout</a>
+                    </li>
+                    <li>
+                        <a href="/dashboard">Dashboard</a>
+                    </li>
+                    {{else}}
+                    <li>
+                        <a href="/">Login</a>
+                    </li>
+                    <li>
+                        <a href="/cadastro">Cadastro</a>
+                    </li>
+                    {{/if}}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<ul class="sidenav" id="mobile-demo">
+    {{#if user}}
+    {{#if user.desenvolvedor}}
+    <li>
+        <a href="/slider">Usuários</a>
+    </li>
+    {{/if}}
+    <li>
+        <a href="/dashboard">Dashboard</a>
+    </li>
+    <li>
+        <a href="/">Logout</a>
+    </li>
+    {{else}}
+    <li>
+        <a href="/">Login</a>
+    </li>
+    <li>
+        <a href="/cadastro">Cadastro</a>
+    </li>
+    {{/if}}
+</ul>
+<div class="divider"></div>

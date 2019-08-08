@@ -1,0 +1,36 @@
+{{#each erro}}
+<div class="container msg">
+  <div class="alert center-align">{{text}}
+  </div>
+</div>
+{{else}} {{/each}}
+
+<div class="container">
+  <br><br><br>
+  <div class="row">
+    <div class="bordaCinza col l6 push-l3 m12 s12 animated slideInDown">
+     <div class="bordaVerde white-text">
+        <p class="center-align textoCard">Digite Seu Email </p>
+      </div>
+      <div class="row">
+        <form action="/novasenha?_method=PUT" method="POST">
+          <input type="hidden" name="_method" value="PUT">
+          <div class="row">
+            <div class="input-field col l5 push-l1 s10 push-s1 m12">
+              <input id="email" type="email" class="validate" name="email">
+              <label for="email">Insira seu email</label>
+            </div>
+           
+          </div>
+          <div class="row col l3 s2 m2">
+            <div class="col l3 s2 m2">
+              <button class="btn myButtonBlue hide-on-med-and-down btn tooltipped" type="submit" name="action"data-position="top" data-tooltip="Uma senha provisória será enviada ao seu email junto com um link para a renovação da senha">ENVIAR</button>
+              <button class="btn-floating waves-effect waves light-blue darken-4 hide-on-large-only btn tooltipped" type="submit" name="action"data-position="top" data-tooltip="Uma senha provisória será enviada ao seu email junto com um link para a renovação da senha">
+                <i class="fas fa-sign-in-alt"></i>
+              </button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

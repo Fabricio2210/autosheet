@@ -1,0 +1,43 @@
+{{#each erro}}
+<div class="container msg">
+  <div class="alert center-align">{{text}}
+  </div>
+</div>
+{{else}} {{/each}}
+<div class="container">
+  <br><br class="hide-on-med-and-down"><br class="hide-on-med-and-down">
+  <div class="bordaCinza animated slideInDown">
+    <div class="bordaVerde white-text">
+      <p class="center-align textoCard">Preencha Seus Dados</p>
+    </div>
+      <form class="col s12" method="POST" action="/cadastro">
+        <div class="row">
+          <div class="input-field col l6 s12 m6">
+            <input id="first_name" type="text" class="validate" name="nome">
+            <label for="first_name">Nome(somente o primeiro nome)</label>
+          </div>
+          <div class="input-field col l6 s12 m6">
+            <input id="email" type="email" class="validate" name="email" value="{{email}}">
+            <label for="email">Email</label>
+          </div>
+          <div class="input-field col l6 s12 m6">
+            <input id="password" type="password" class="validate" name="senha">
+            <label for="password">Senha</label>
+          </div>
+          <div class="input-field col l6 s12 m6">
+            <p>
+              <label>
+                <input type="checkbox" id="plantonista" class="validate" name="plantonista" />
+                <span>Plantonista</span>
+              </label>
+            </p>
+          </div>
+        </div>
+        <button class="btn myButtonBlue hide-on-med-and-down" type="submit" name="action">CADASTRAR</button>
+        <button class="btn-floating waves-effect waves light-blue darken-4 hide-on-large-only" type="submit" name="action">
+          <i class="fas fa-sign-in-alt"></i>
+        </button>
+      </form>
+  </div>
+  <div class="row"></div>
+</div>
